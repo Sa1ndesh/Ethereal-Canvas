@@ -4,6 +4,7 @@
   <img src="https://img.shields.io/badge/React-19.1.0-61dafb?style=for-the-badge&logo=react&logoColor=white" />
   <img src="https://img.shields.io/badge/TypeScript-5.8.3-3178c6?style=for-the-badge&logo=typescript&logoColor=white" />
   <img src="https://img.shields.io/badge/Vite-6.3.5-646cff?style=for-the-badge&logo=vite&logoColor=white" />
+  <img src="https://img.shields.io/badge/Netlify-Serverless-00C7B7?style=for-the-badge&logo=netlify&logoColor=white" />
   <img src="https://img.shields.io/badge/Web3-Enabled-ff6b35?style=for-the-badge&logo=ethereum&logoColor=white" />
   <img src="https://img.shields.io/badge/AI-Powered-00d4aa?style=for-the-badge&logo=openai&logoColor=white" />
 </div>
@@ -155,15 +156,23 @@ PINATA_SECRET_KEY="your_pinata_secret_here"
 - **Tailwind CSS** - Utility-first styling
 - **Framer Motion** - Smooth animations
 
+### **Backend (Serverless)**
+- **Netlify Functions** - Serverless API endpoints
+- **Node.js** - Runtime environment
+- **AI API Integration** - Hugging Face, Pollinations fallback
+- **Intelligent Routing** - Multi-provider failover logic
+- **CORS Support** - Cross-origin resource sharing
+
 ### **Web3 & Blockchain**
 - **ethers.js 6** - Ethereum interaction
 - **WalletConnect** - Universal wallet connectivity
 - **Alchemy/Infura** - Reliable Web3 infrastructure
 
 ### **AI & APIs**
+- **Hugging Face Inference** - Stable Diffusion models
+- **Pollinations AI** - Free fallback service
 - **Google Generative AI** - Gemini integration
 - **OpenAI SDK** - DALL-E access
-- **Axios** - HTTP client
 - **Multiple AI Providers** - Redundancy and choice
 
 ### **Storage & Database**
@@ -176,25 +185,96 @@ PINATA_SECRET_KEY="your_pinata_secret_here"
 ## 📁 Project Structure
 
 ```
-src/
-├── components/           # Reusable UI components
-│   ├── Gallery.tsx      # Art gallery display
-│   ├── GeneratorForm.tsx # AI prompt input form
-│   ├── ImageDisplay.tsx # Generated image viewer
-│   ├── Layout.tsx       # App layout wrapper
-│   └── WalletConnectButton.tsx # Web3 wallet integration
-├── pages/               # Main application pages
-│   ├── GeneratePage.tsx # AI art generation interface
-│   └── GalleryPage.tsx  # Personal art gallery
-├── hooks/               # Custom React hooks
-│   └── useWallet.ts     # Web3 wallet management
-├── utils/               # Utility functions
-│   ├── gemini-api.ts    # AI image generation logic
-│   ├── mock-api.ts      # Development fallbacks
-│   └── storage.ts       # Data persistence
-├── types/               # TypeScript definitions
-│   └── index.ts         # Shared type definitions
-└── App.tsx             # Main application component
+🎨 Ethereal Canvas/
+├── 🎯 Frontend (src/)
+│   ├── components/           # Reusable UI components
+│   │   ├── Gallery.tsx      # Art gallery display
+│   │   ├── GeneratorForm.tsx # AI prompt input form
+│   │   ├── ImageDisplay.tsx # Generated image viewer
+│   │   ├── Layout.tsx       # App layout wrapper
+│   │   └── WalletConnectButton.tsx # Web3 wallet integration
+│   ├── pages/               # Main application pages
+│   │   ├── GeneratePage.tsx # AI art generation interface
+│   │   └── GalleryPage.tsx  # Personal art gallery
+│   ├── hooks/               # Custom React hooks
+│   │   └── useWallet.ts     # Web3 wallet management
+│   ├── utils/               # Utility functions
+│   │   ├── gemini-api.ts    # AI image generation logic
+│   │   ├── mock-api.ts      # Development fallbacks
+│   │   └── storage.ts       # Data persistence
+│   ├── types/               # TypeScript definitions
+│   │   └── index.ts         # Shared type definitions
+│   └── App.tsx             # Main application component
+│
+├── ⚡ Backend (api/)
+│   └── generate-image.js    # Serverless AI generation endpoint
+│                            # • Hugging Face Stable Diffusion
+│                            # • Pollinations AI fallback
+│                            # • Enhanced prompt processing
+│                            # • CORS & error handling
+│
+├── 🚀 Deployment
+│   ├── netlify.toml         # Netlify configuration
+│   ├── package.json         # Dependencies & scripts
+│   └── .env                 # Environment variables (excluded)
+│
+└── 📚 Documentation
+    ├── README.md            # This comprehensive guide
+    └── API_KEYS_GUIDE.md   # API setup instructions
+```
+
+---
+
+## ⚡ Serverless Backend API
+
+### **AI Image Generation Endpoint**
+
+**Endpoint**: `POST /api/generate-image`
+
+**Features**:
+- 🎨 **Hugging Face Stable Diffusion** - Primary AI model
+- 🔄 **Intelligent Fallback** - Automatic switch to Pollinations AI
+- ✨ **Enhanced Prompting** - Automatic prompt optimization
+- 🔒 **Secure Processing** - Server-side API key management
+- 🌐 **CORS Enabled** - Cross-origin request support
+
+**Request**:
+```typescript
+// Frontend usage
+const response = await fetch('/api/generate-image', {
+  method: 'POST',
+  headers: {
+    'Content-Type': 'application/json',
+  },
+  body: JSON.stringify({
+    prompt: "Ethereal dragon in cyberpunk city, neon lights"
+  })
+});
+
+const result = await response.json();
+```
+
+**Response**:
+```json
+{
+  "imageUrl": "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAA...",
+  "prompt": "Ethereal dragon in cyberpunk city, neon lights, digital art, high quality, detailed, vibrant colors, professional composition, masterpiece",
+  "source": "huggingface"
+}
+```
+
+**Fallback Chain**:
+1. 🤖 **Hugging Face** (Stable Diffusion v1.5) - High quality, requires API key
+2. 🌿 **Pollinations AI** - Free service, good quality
+3. 🇿 **Placeholder** - Styled fallback for development
+
+### **Environment Variables for Backend**
+```bash
+# Required for Hugging Face integration
+HUGGING_FACE_API_KEY="hf_your_token_here"
+
+# Automatically available in Netlify Functions
+NETLIFY_DEV=true  # Development mode
 ```
 
 ---
