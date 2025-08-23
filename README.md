@@ -349,7 +349,4 @@ This project is licensed under the MIT License - see the [LICENSE](LICENSE) file
 
 <div align="center">
   <p>Made with ❤️ for the AI Art Community</p>
-  <p>
-    <a href="https://dualite.dev">🌟 Generated with Alpha by DuaLite</a>
-  </p>
 </div>
