@@ -11,16 +11,31 @@ const Gallery: React.FC = () => {
   useEffect(() => {
     const loadImages = () => {
       const allImages = getImages();
+      console.log('Gallery: Loading images from storage:', allImages.length);
       setImages(allImages);
     };
 
     loadImages();
     
     // Listen for storage changes
-    const handleStorageChange = () => loadImages();
-    window.addEventListener('storage', handleStorageChange);
+    const handleStorageChange = () => {
+      console.log('Gallery: Storage changed, reloading images');
+      loadImages();
+    };
     
-    return () => window.removeEventListener('storage', handleStorageChange);
+    // Listen for custom events when images are updated
+    const handleImageUpdate = () => {
+      console.log('Gallery: Image update event received');
+      loadImages();
+    };
+    
+    window.addEventListener('storage', handleStorageChange);
+    window.addEventListener('ethereal_canvas_image_updated', handleImageUpdate);
+    
+    return () => {
+      window.removeEventListener('storage', handleStorageChange);
+      window.removeEventListener('ethereal_canvas_image_updated', handleImageUpdate);
+    };
   }, []);
 
   const filteredImages = images.filter(image => 
@@ -84,6 +99,18 @@ const Gallery: React.FC = () => {
                   src={image.imageUrl}
                   alt={image.prompt}
                   className="w-full h-48 object-cover rounded-lg"
+                  onError={(e) => {
+                    console.error('Gallery: Failed to load image:', image.imageUrl);
+                    const target = e.target as HTMLImageElement;
+                    // Only use fallback if it's not already a fallback image
+                    if (!image.imageUrl.includes('picsum.photos')) {
+                      console.log('Gallery: Using fallback image for', image.id);
+                      target.src = `https://picsum.photos/400/300?random=${image.id}`;
+                    }
+                  }}
+                  onLoad={() => {
+                    console.log('Gallery: Image loaded successfully:', image.id, image.imageUrl);
+                  }}
                 />
                 
                 {image.isNFT && (

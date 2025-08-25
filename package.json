@@ -1,8 +1,19 @@
 {
-  "name": "vite-react-typescript-starter",
-  "private": true,
-  "version": "0.0.0",
+  "name": "ethereal-canvas",
+  "description": "Cross-Platform AI Art Studio - Transform your imagination into stunning AI-generated artwork and mint them as unique NFTs",
+  "version": "1.0.0",
   "type": "module",
+  "keywords": ["ai", "art", "nft", "blockchain", "react", "typescript", "android", "web3", "capacitor"],
+  "author": "Sa1ndesh",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/Sa1ndesh/Ethereal-Canvas.git"
+  },
+  "homepage": "https://github.com/Sa1ndesh/Ethereal-Canvas",
+  "bugs": {
+    "url": "https://github.com/Sa1ndesh/Ethereal-Canvas/issues"
+  },
   "scripts": {
     "dev": "vite",
     "build": "vite build",
@@ -10,12 +21,22 @@
     "preview": "vite preview"
   },
   "dependencies": {
+    "@capacitor/android": "^7.4.3",
+    "@capacitor/cli": "^7.4.3",
+    "@capacitor/core": "^7.4.3",
+    "@capacitor/filesystem": "^7.1.4",
+    "@capacitor/keyboard": "^7.0.2",
+    "@capacitor/share": "^7.0.2",
+    "@capacitor/splash-screen": "^7.0.2",
+    "@capacitor/status-bar": "^7.0.2",
     "@faker-js/faker": "^9.9.0",
     "@google/generative-ai": "^0.24.1",
     "axios": "^1.9.0",
+    "dotenv": "^17.2.1",
     "ethers": "^6.15.0",
     "framer-motion": "^12.23.12",
     "lucide-react": "^0.511.0",
+    "nft.storage": "^7.2.0",
     "openai": "^5.15.0",
     "react": "^19.1.0",
     "react-dom": "^19.1.0",
@@ -28,6 +49,7 @@
     "@types/react-dom": "^19.1.5",
     "@vitejs/plugin-react": "^4.5.0",
     "autoprefixer": "^10.4.21",
+    "connect-history-api-fallback": "^2.0.0",
     "eslint": "^9.27.0",
     "eslint-plugin-react-hooks": "^5.2.0",
     "eslint-plugin-react-refresh": "^0.4.20",
