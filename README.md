@@ -254,34 +254,23 @@ echo ".env" >> .gitignore
 
 ## 🛠️ Tech Stack
 
-### 🎯 **Frontend Architecture**
-- **⚛️ React 19** - Latest React with concurrent rendering and suspense
-- **📘 TypeScript** - Full type safety with strict mode enabled
-- **⚡ Vite** - Lightning-fast build tool with HMR and optimized bundling
-- **🎨 Tailwind CSS** - Utility-first CSS framework with JIT compilation
-- **🎭 Framer Motion** - Production-ready motion library for React
-- **📱 Capacitor** - Cross-platform native runtime for web apps
+### **Frontend**
+- **React 19** - Latest React with concurrent features
+- **TypeScript** - Type-safe development
+- **Vite** - Lightning-fast build tool
+- **Tailwind CSS** - Utility-first styling
+- **Framer Motion** - Smooth animations
 
-### ⚡ **Backend (Serverless Architecture)**
-- **🌐 Netlify Functions** - Serverless API endpoints with edge deployment
-- **📡 Node.js 18+** - Modern JavaScript runtime with ES modules
-- **🤖 AI API Integration** - Multi-provider failover architecture
-- **🔄 Intelligent Routing** - Load balancing across AI services
-- **🛡️ CORS & Security** - Comprehensive security headers and validation
+### **Web3 & Blockchain**
+- **ethers.js 6** - Ethereum interaction
+- **WalletConnect** - Universal wallet connectivity
+- **Alchemy/Infura** - Reliable Web3 infrastructure
 
-### 🔗 **Web3 & Blockchain Integration**
-- **💰 ethers.js 6** - Ethereum interaction with TypeScript support
-- **🔌 WalletConnect v2** - Universal wallet connectivity protocol
-- **⚗️ Alchemy SDK** - Reliable Web3 infrastructure with webhooks
-- **📊 NFT.Storage** - IPFS pinning optimized for NFT metadata
-- **⛓️ Multi-chain Support** - Ethereum, Polygon, Arbitrum ready
-
-### 🤖 **AI & Machine Learning**
-- **🤗 Hugging Face Inference** - Stable Diffusion XL and custom models
-- **🎨 OpenAI GPT & DALL-E** - Premium text and image generation
-- **🖼️ Stability AI** - State-of-the-art image generation models
-- **🔄 Replicate** - Community AI models with custom inference
-- **🌿 Pollinations AI** - Free fallback service with reliability
+### **AI & APIs**
+- **Google Generative AI** - Gemini integration
+- **OpenAI SDK** - DALL-E access
+- **Axios** - HTTP client
+- **Multiple AI Providers** - Redundancy and choice
 
 ### 💾 **Data & Storage**
 - **🔥 Firebase v9** - Real-time database with offline support
@@ -298,91 +287,28 @@ echo ".env" >> .gitignore
 
 ---
 
-## 📁 Project Architecture
+## 📁 Project Structure
 
 ```
-🎨 Ethereal Canvas/
-├── 🎯 Frontend (src/)
-│   ├── components/              # 🧩 Reusable UI Components
-│   │   ├── ui/                  # 🎨 Base UI components (Button, Input, etc.)
-│   │   ├── features/            # 🔧 Feature-specific components
-│   │   │   ├── Gallery.tsx      # 🖼️ Art gallery with infinite scroll
-│   │   │   ├── GeneratorForm.tsx # 🎨 AI prompt input with validation
-│   │   │   ├── ImageDisplay.tsx # 🖼️ Zoomable image viewer
-│   │   │   ├── WalletConnect.tsx # 💰 Web3 wallet integration
-│   │   │   └── NFTMinter.tsx    # 🪙 NFT minting interface
-│   │   └── layout/              # 📐 Layout components
-│   │       ├── Header.tsx       # 🧭 Navigation and user menu
-│   │       ├── Sidebar.tsx      # 📋 Side navigation panel
-│   │       └── Layout.tsx       # 🏗️ Main app layout wrapper
-│   ├── pages/                   # 📄 Route-based page components
-│   │   ├── HomePage.tsx         # 🏠 Landing page with features
-│   │   ├── GeneratePage.tsx     # 🎨 AI art generation studio
-│   │   ├── GalleryPage.tsx      # 🖼️ Personal art collection
-│   │   ├── NFTPage.tsx          # 🪙 NFT management dashboard
-│   │   └── SettingsPage.tsx     # ⚙️ User preferences
-│   ├── hooks/                   # 🪝 Custom React hooks
-│   │   ├── useWallet.ts         # 💰 Web3 wallet state management
-│   │   ├── useAIGeneration.ts   # 🤖 AI image generation logic
-│   │   ├── useNFT.ts            # 🪙 NFT minting and tracking
-│   │   ├── useGallery.ts        # 🖼️ Gallery state and operations
-│   │   └── useLocalStorage.ts   # 💾 Persistent local storage
-│   ├── utils/                   # 🔧 Utility functions
-│   │   ├── ai/                  # 🤖 AI service integrations
-│   │   │   ├── gemini-api.ts    # 🔮 Google Gemini integration
-│   │   │   ├── openai-api.ts    # 🎨 OpenAI DALL-E integration
-│   │   │   ├── stability-api.ts # 🖼️ Stability AI integration
-│   │   │   └── fallback.ts      # 🔄 Intelligent failover logic
-│   │   ├── web3/                # 🔗 Blockchain utilities
-│   │   │   ├── wallet.ts        # 💼 Wallet connection helpers
-│   │   │   ├── contracts.ts     # 📄 Smart contract interactions
-│   │   │   └── ipfs.ts          # 🌐 IPFS upload utilities
-│   │   ├── storage.ts           # 💾 Data persistence helpers
-│   │   ├── validation.ts        # ✅ Input validation schemas
-│   │   └── constants.ts         # 📊 App constants and configs
-│   ├── types/                   # 📘 TypeScript definitions
-│   │   ├── api.ts               # 🔌 API response types
-│   │   ├── nft.ts               # 🪙 NFT and blockchain types
-│   │   ├── gallery.ts           # 🖼️ Gallery and image types
-│   │   └── index.ts             # 📦 Exported type definitions
-│   ├── styles/                  # 🎨 Styling and themes
-│   │   ├── globals.css          # 🌐 Global styles and variables
-│   │   ├── components.css       # 🧩 Component-specific styles
-│   │   └── animations.css       # 🎭 Custom animations
-│   ├── App.tsx                  # 🏗️ Root application component
-│   ├── main.tsx                 # 🚀 Application entry point
-│   └── vite-env.d.ts            # ⚙️ Vite environment types
-│
-├── 📱 Mobile (android/)
-│   ├── app/src/main/            # 📱 Android app source
-│   │   ├── java/com/ethereal/   # ☕ Native Android code
-│   │   ├── assets/public/       # 🌐 Web app assets
-│   │   └── res/                 # 🎨 Android resources
-│   ├── gradle/                  # 🔧 Gradle build configuration
-│   └── capacitor.config.ts      # ⚡ Capacitor configuration
-│
-├── ⚡ Backend (api/)
-│   └── generate-image.js        # 🤖 Serverless AI generation endpoint
-│                               # • Multi-provider AI integration
-│                               # • Intelligent failover logic
-│                               # • Enhanced prompt processing
-│                               # • CORS & security headers
-│                               # • Rate limiting & caching
-│
-├── 🚀 Deployment & Config
-│   ├── netlify.toml            # 🌐 Netlify deployment config
-│   ├── vercel.json             # ▲ Vercel deployment config
-│   ├── docker-compose.yml      # 🐳 Docker development setup
-│   ├── .github/workflows/      # 🔄 CI/CD automation
-│   ├── package.json            # 📦 Dependencies and scripts
-│   └── .env.example            # 🔐 Environment variables template
-│
-└── 📚 Documentation
-    ├── README.md               # 📖 This comprehensive guide
-    ├── API_KEYS_GUIDE.md       # 🔑 API setup instructions
-    ├── DEPLOYMENT_GUIDE.md     # 🚀 Deployment instructions
-    ├── MOBILE_GUIDE.md         # 📱 Mobile development guide
-    └── CONTRIBUTING.md         # 🤝 Contribution guidelines
+src/
+├── components/           # Reusable UI components
+│   ├── Gallery.tsx      # Art gallery display
+│   ├── GeneratorForm.tsx # AI prompt input form
+│   ├── ImageDisplay.tsx # Generated image viewer
+│   ├── Layout.tsx       # App layout wrapper
+│   └── WalletConnectButton.tsx # Web3 wallet integration
+├── pages/               # Main application pages
+│   ├── GeneratePage.tsx # AI art generation interface
+│   └── GalleryPage.tsx  # Personal art gallery
+├── hooks/               # Custom React hooks
+│   └── useWallet.ts     # Web3 wallet management
+├── utils/               # Utility functions
+│   ├── gemini-api.ts    # AI image generation logic
+│   ├── mock-api.ts      # Development fallbacks
+│   └── storage.ts       # Data persistence
+├── types/               # TypeScript definitions
+│   └── index.ts         # Shared type definitions
+└── App.tsx             # Main application component
 ```
 
 ---
