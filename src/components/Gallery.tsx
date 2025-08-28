@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { motion } from 'framer-motion';
-import { Download, ExternalLink, Calendar, Coins, Filter } from 'lucide-react';
-import { getImages } from '../utils/storage';
+import { Download, ExternalLink, Calendar, Coins, Filter, Trash2 } from 'lucide-react';
+import { getImages, deleteImage } from '../utils/storage';
 import type { GeneratedImage } from '../types';
 
 const Gallery: React.FC = () => {
@@ -47,6 +47,17 @@ const Gallery: React.FC = () => {
     link.href = image.imageUrl;
     link.download = `ethereal-canvas-${image.id}.png`;
     link.click();
+  };
+
+  const handleDeleteImage = (image: GeneratedImage) => {
+    const confirmMessage = image.isNFT 
+      ? `Are you sure you want to delete this NFT artwork? This action cannot be undone.\n\nPrompt: "${image.prompt}"`
+      : `Are you sure you want to delete this artwork? This action cannot be undone.\n\nPrompt: "${image.prompt}"`;
+    
+    if (window.confirm(confirmMessage)) {
+      deleteImage(image.id);
+      console.log('Gallery: Image deleted:', image.id);
+    }
   };
 
   return (
@@ -126,8 +137,19 @@ const Gallery: React.FC = () => {
                     whileTap={{ scale: 0.9 }}
                     onClick={() => downloadImage(image)}
                     className="p-2 bg-white/20 backdrop-blur-sm rounded-full text-white hover:bg-white/30 transition-colors"
+                    title="Download image"
                   >
                     <Download className="w-5 h-5" />
+                  </motion.button>
+                  
+                  <motion.button
+                    whileHover={{ scale: 1.1 }}
+                    whileTap={{ scale: 0.9 }}
+                    onClick={() => handleDeleteImage(image)}
+                    className="p-2 bg-red-600/60 backdrop-blur-sm rounded-full text-white hover:bg-red-600/80 transition-colors"
+                    title="Delete image"
+                  >
+                    <Trash2 className="w-5 h-5" />
                   </motion.button>
                   
                   {image.isNFT && image.nftExplorerUrl && (
@@ -138,6 +160,7 @@ const Gallery: React.FC = () => {
                       target="_blank"
                       rel="noopener noreferrer"
                       className="p-2 bg-white/20 backdrop-blur-sm rounded-full text-white hover:bg-white/30 transition-colors"
+                      title="View on blockchain explorer"
                     >
                       <ExternalLink className="w-5 h-5" />
                     </motion.a>

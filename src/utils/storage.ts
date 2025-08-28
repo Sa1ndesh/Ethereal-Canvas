@@ -28,6 +28,16 @@ export const updateImage = (imageId: string, updates: Partial<GeneratedImage>): 
   window.dispatchEvent(new CustomEvent('ethereal_canvas_image_updated'));
 };
 
+export const deleteImage = (imageId: string): void => {
+  const images = getImages();
+  const updatedImages = images.filter(img => img.id !== imageId);
+  localStorage.setItem(STORAGE_KEY, JSON.stringify(updatedImages));
+  
+  console.log('Storage: Image deleted', { imageId });
+  // Dispatch custom event to notify components
+  window.dispatchEvent(new CustomEvent('ethereal_canvas_image_updated'));
+};
+
 export const getUserNFTs = (userAddress: string): GeneratedImage[] => {
   return getImages().filter(img => img.isNFT);
 };

@@ -1,0 +1,237 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>🎨 Ethereal Canvas - AI Art & NFT Platform</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white; overflow: hidden;
+        }
+        .presentation-container {
+            width: 100vw; height: 100vh; display: flex;
+            align-items: center; justify-content: center; position: relative;
+        }
+        .slide {
+            display: none; width: 90%; max-width: 1200px; height: 90%;
+            background: rgba(255, 255, 255, 0.1); backdrop-filter: blur(20px);
+            border-radius: 20px; padding: 60px; text-align: center;
+            box-shadow: 0 25px 45px rgba(0, 0, 0, 0.2);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            animation: slideIn 0.8s ease-out;
+        }
+        .slide.active { display: flex; flex-direction: column; justify-content: center; }
+        @keyframes slideIn { from { opacity: 0; transform: translateY(50px); } to { opacity: 1; transform: translateY(0); } }
+        .slide h1 {
+            font-size: 4rem; margin-bottom: 30px;
+            background: linear-gradient(45deg, #ff6b6b, #4ecdc4, #45b7d1, #96ceb4);
+            -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+            background-clip: text; text-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+        }
+        .slide h2 { font-size: 3rem; margin-bottom: 40px; color: #fff; text-shadow: 0 2px 4px rgba(0, 0, 0, 0.5); }
+        .slide h3 { font-size: 2rem; margin-bottom: 30px; color: #f8f9fa; }
+        .slide p { font-size: 1.4rem; line-height: 1.8; margin-bottom: 30px; color: rgba(255, 255, 255, 0.9); }
+        .subtitle { font-size: 1.8rem; color: rgba(255, 255, 255, 0.8); margin-bottom: 40px; font-weight: 300; }
+        .features-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 30px; margin: 40px 0; }
+        .feature-card {
+            background: rgba(255, 255, 255, 0.1); padding: 30px; border-radius: 15px;
+            border: 1px solid rgba(255, 255, 255, 0.2); backdrop-filter: blur(10px);
+            transition: transform 0.3s ease;
+        }
+        .feature-card:hover { transform: translateY(-5px); }
+        .feature-card h4 { font-size: 1.5rem; margin-bottom: 15px; color: #4ecdc4; }
+        .tech-stack { display: flex; flex-wrap: wrap; justify-content: center; gap: 20px; margin: 40px 0; }
+        .tech-badge {
+            background: linear-gradient(45deg, #ff6b6b, #4ecdc4); padding: 12px 24px;
+            border-radius: 25px; font-weight: bold; font-size: 1.1rem;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+        }
+        .navigation {
+            position: fixed; bottom: 30px; left: 50%; transform: translateX(-50%);
+            display: flex; gap: 15px; z-index: 1000;
+        }
+        .nav-btn {
+            padding: 12px 24px; background: rgba(255, 255, 255, 0.2); border: none;
+            border-radius: 25px; color: white; cursor: pointer; font-size: 1rem;
+            backdrop-filter: blur(10px); transition: all 0.3s ease;
+        }
+        .nav-btn:hover { background: rgba(255, 255, 255, 0.3); transform: translateY(-2px); }
+        .slide-counter {
+            position: fixed; top: 30px; right: 30px; background: rgba(255, 255, 255, 0.2);
+            padding: 10px 20px; border-radius: 20px; backdrop-filter: blur(10px); font-size: 1.1rem;
+        }
+        .emoji { font-size: 3rem; margin-bottom: 20px; }
+        .cta-button {
+            display: inline-block; padding: 20px 40px;
+            background: linear-gradient(45deg, #ff6b6b, #4ecdc4); border: none;
+            border-radius: 30px; color: white; font-size: 1.3rem; font-weight: bold;
+            text-decoration: none; margin: 30px 20px; transition: all 0.3s ease;
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.2);
+        }
+        .cta-button:hover { transform: translateY(-3px); box-shadow: 0 12px 35px rgba(0, 0, 0, 0.3); }
+    </style>
+</head>
+<body>
+    <div class="presentation-container">
+        <!-- Slide 1: Title -->
+        <div class="slide active">
+            <div class="emoji">🎨</div>
+            <h1>Ethereal Canvas</h1>
+            <p class="subtitle">AI Art & NFT Platform</p>
+            <p>🌟 Transform your imagination into stunning AI-generated artwork and mint them as unique NFTs on the blockchain 🌟</p>
+            <div class="tech-stack">
+                <span class="tech-badge">React 19</span>
+                <span class="tech-badge">TypeScript</span>
+                <span class="tech-badge">Web3</span>
+                <span class="tech-badge">AI-Powered</span>
+                <span class="tech-badge">Cross-Platform</span>
+            </div>
+        </div>
+
+        <!-- Slide 2: Problem Statement -->
+        <div class="slide">
+            <h2>🎯 The Challenge</h2>
+            <div class="features-grid">
+                <div class="feature-card">
+                    <h4>🎨 Limited AI Art Access</h4>
+                    <p>Complex AI tools require technical expertise and multiple subscriptions</p>
+                </div>
+                <div class="feature-card">
+                    <h4>💰 NFT Complexity</h4>
+                    <p>Minting NFTs is complicated, expensive, and requires blockchain knowledge</p>
+                </div>
+                <div class="feature-card">
+                    <h4>📱 Platform Fragmentation</h4>
+                    <p>No unified cross-platform solution for creators</p>
+                </div>
+                <div class="feature-card">
+                    <h4>🔗 Web3 Barriers</h4>
+                    <p>Blockchain integration is developer-only territory</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Slide 3: Solution Overview -->
+        <div class="slide">
+            <h2>💡 Our Solution</h2>
+            <p class="subtitle">A comprehensive, user-friendly platform that democratizes AI art creation and NFT minting</p>
+            <div class="features-grid">
+                <div class="feature-card">
+                    <div class="emoji">🤖</div>
+                    <h4>Multi-Provider AI</h4>
+                    <p>Gemini, OpenAI, Stability AI, Hugging Face with intelligent failover for 99.9% uptime</p>
+                </div>
+                <div class="feature-card">
+                    <div class="emoji">⛓️</div>
+                    <h4>One-Click NFT Minting</h4>
+                    <p>Seamless blockchain integration with MetaMask & WalletConnect</p>
+                </div>
+                <div class="feature-card">
+                    <div class="emoji">📱</div>
+                    <h4>Cross-Platform Ready</h4>
+                    <p>Web, Android, and desktop applications with unified experience</p>
+                </div>
+                <div class="feature-card">
+                    <div class="emoji">🎨</div>
+                    <h4>Professional Gallery</h4>
+                    <p>Showcase and manage your AI art portfolio with social features</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Slide 4: Key Features -->
+        <div class="slide">
+            <h2>✨ Key Features</h2>
+            <div class="features-grid">
+                <div class="feature-card">
+                    <h4>🎨 Advanced AI Art Generation</h4>
+                    <p>• Multi-provider support with failover<br>
+                    • Enhanced prompting with AI optimization<br>
+                    • Real-time generation with progress tracking<br>
+                    • Multiple art styles and formats</p>
+                </div>
+                <div class="feature-card">
+                    <h4>🔗 Complete Web3 Ecosystem</h4>
+                    <p>• Multi-chain support (Ethereum, Polygon)<br>
+                    • Universal wallet connectivity<br>
+                    • IPFS integration for metadata<br>
+                    • Gas-optimized smart contracts</p>
+                </div>
+                <div class="feature-card">
+                    <h4>🖼️ Professional Gallery</h4>
+                    <p>• Personal art collection management<br>
+                    • NFT portfolio tracking<br>
+                    • High-resolution exports<br>
+                    • Social sharing capabilities</p>
+                </div>
+                <div class="feature-card">
+                    <h4>📱 Cross-Platform Excellence</h4>
+                    <p>• Progressive Web App<br>
+                    • Native Android via Capacitor<br>
+                    • Desktop-ready architecture<br>
+                    • Responsive design</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Slide 5: Call to Action -->
+        <div class="slide">
+            <h2>🚀 Ready to Create AI Masterpieces?</h2>
+            <p class="subtitle">Join the future of AI-powered creative expression</p>
+            <div class="features-grid">
+                <div class="feature-card">
+                    <div class="emoji">🌐</div>
+                    <h4>Try the Web App</h4>
+                    <p>Deploy instantly to Netlify or Vercel</p>
+                </div>
+                <div class="feature-card">
+                    <div class="emoji">📱</div>
+                    <h4>Build Android App</h4>
+                    <p>Open in Android Studio and run natively</p>
+                </div>
+            </div>
+            <a href="https://github.com/Sa1ndesh/Ethereal-Canvas" class="cta-button">⭐ Star on GitHub</a>
+            <a href="#" class="cta-button">🚀 Live Demo</a>
+        </div>
+    </div>
+
+    <div class="slide-counter">
+        <span id="current-slide">1</span> / <span id="total-slides">5</span>
+    </div>
+
+    <div class="navigation">
+        <button class="nav-btn" onclick="previousSlide()">← Previous</button>
+        <button class="nav-btn" onclick="nextSlide()">Next →</button>
+    </div>
+
+    <script>
+        let currentSlide = 0;
+        const slides = document.querySelectorAll('.slide');
+        const totalSlides = slides.length;
+        
+        document.getElementById('total-slides').textContent = totalSlides;
+
+        function showSlide(n) {
+            slides[currentSlide].classList.remove('active');
+            currentSlide = (n + totalSlides) % totalSlides;
+            slides[currentSlide].classList.add('active');
+            document.getElementById('current-slide').textContent = currentSlide + 1;
+        }
+
+        function nextSlide() { showSlide(currentSlide + 1); }
+        function previousSlide() { showSlide(currentSlide - 1); }
+
+        // Keyboard navigation
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'ArrowRight' || e.key === ' ') nextSlide();
+            if (e.key === 'ArrowLeft') previousSlide();
+        });
+
+        // Auto-advance (optional)
+        // setInterval(nextSlide, 10000);
+    </script>
+</body>
+</html>
