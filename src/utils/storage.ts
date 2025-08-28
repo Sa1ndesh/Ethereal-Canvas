@@ -1,6 +1,9 @@
 import type { GeneratedImage } from '../types';
 
 const STORAGE_KEY = 'ethereal_canvas_images';
+const PROMPT_HISTORY_KEY = 'ethereal_canvas_prompt_history';
+const FAVORITE_PROMPTS_KEY = 'ethereal_canvas_favorite_prompts';
+const MAX_HISTORY_LENGTH = 50;
 
 export const saveImage = (image: GeneratedImage): void => {
   const existingImages = getImages();
@@ -38,6 +41,46 @@ export const deleteImage = (imageId: string): void => {
   window.dispatchEvent(new CustomEvent('ethereal_canvas_image_updated'));
 };
 
-export const getUserNFTs = (userAddress: string): GeneratedImage[] => {
+export const getUserNFTs = (): GeneratedImage[] => {
   return getImages().filter(img => img.isNFT);
+};
+
+// Prompt History Management
+export const savePromptToHistory = (prompt: string): void => {
+  if (!prompt || prompt.length < 10) return;
+  let history = getPromptHistory();
+  // Avoid duplicates
+  history = history.filter(p => p !== prompt);
+  const updatedHistory = [prompt, ...history].slice(0, MAX_HISTORY_LENGTH);
+  localStorage.setItem(PROMPT_HISTORY_KEY, JSON.stringify(updatedHistory));
+};
+
+export const getPromptHistory = (): string[] => {
+  const stored = localStorage.getItem(PROMPT_HISTORY_KEY);
+  return stored ? JSON.parse(stored) : [];
+};
+
+// Favorite Prompts Management
+export const getFavoritePrompts = (): string[] => {
+  const stored = localStorage.getItem(FAVORITE_PROMPTS_KEY);
+  return stored ? JSON.parse(stored) : [];
+};
+
+export const addPromptToFavorites = (prompt: string): void => {
+  const favorites = getFavoritePrompts();
+  if (!favorites.includes(prompt)) {
+    const updatedFavorites = [prompt, ...favorites];
+    localStorage.setItem(FAVORITE_PROMPTS_KEY, JSON.stringify(updatedFavorites));
+  }
+};
+
+export const removePromptFromFavorites = (prompt: string): void => {
+  const favorites = getFavoritePrompts();
+  const updatedFavorites = favorites.filter(p => p !== prompt);
+  localStorage.setItem(FAVORITE_PROMPTS_KEY, JSON.stringify(updatedFavorites));
+};
+
+export const isPromptFavorite = (prompt: string): boolean => {
+  const favorites = getFavoritePrompts();
+  return favorites.includes(prompt);
 };
