@@ -178,9 +178,15 @@ const ImageDisplay: React.FC<ImageDisplayProps> = ({ image, onImageUpdate }) => 
 
   if (!currentImage) {
     return (
-      <div className="text-center text-gray-400 py-8">
-        <p>No image selected</p>
-      </div>
+      <GlassCard className="p-8" blur="lg" gradient="purple">
+        <div className="text-center text-gray-300 py-8">
+          <LoadingSpinner 
+            variant="dots" 
+            size="lg" 
+            text="Generate an image to see it here"
+          />
+        </div>
+      </GlassCard>
     );
   }
 
@@ -191,24 +197,29 @@ const ImageDisplay: React.FC<ImageDisplayProps> = ({ image, onImageUpdate }) => 
       glow
       gradient="purple"
     >
-      <div className="relative">
-        <img
-          src={currentImage.imageUrl}
-          alt={currentImage.prompt}
-          className="w-full h-64 object-cover rounded-lg"
-          onError={(e) => {
-            console.error('ImageDisplay: Failed to load image:', currentImage.imageUrl);
-            const target = e.target as HTMLImageElement;
-            // Only use fallback if it's not already a fallback image
-            if (!currentImage.imageUrl.includes('picsum.photos')) {
-              console.log('ImageDisplay: Using fallback image');
-              target.src = `https://picsum.photos/1024/1024?random=${Date.now()}`;
-            }
-          }}
-          onLoad={() => {
-            console.log('ImageDisplay: Image loaded successfully:', currentImage.imageUrl);
-          }}
-        />
+      <div className="relative flex justify-center mb-6">
+        <div className="relative group">
+          <img
+            src={currentImage.imageUrl}
+            alt={currentImage.prompt}
+            className="w-full max-w-2xl max-h-[500px] sm:max-h-[600px] object-contain rounded-lg bg-gray-900/20 shadow-2xl transition-transform duration-300 group-hover:scale-[1.02]"
+            onError={(e) => {
+              console.error('ImageDisplay: Failed to load image:', currentImage.imageUrl);
+              const target = e.target as HTMLImageElement;
+              // Only use fallback if it's not already a fallback image
+              if (!currentImage.imageUrl.includes('picsum.photos')) {
+                console.log('ImageDisplay: Using fallback image');
+                target.src = `https://picsum.photos/1024/1024?random=${Date.now()}`;
+              }
+            }}
+            onLoad={() => {
+              console.log('ImageDisplay: Image loaded successfully:', currentImage.imageUrl);
+            }}
+          />
+          
+          {/* Image overlay for better visibility */}
+          <div className="absolute inset-0 rounded-lg bg-gradient-to-t from-black/20 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
+        </div>
         
         {currentImage.isNFT && (
           <div className="absolute top-3 right-3 bg-green-600 text-white px-3 py-1 rounded-full text-sm font-medium flex items-center space-x-1">

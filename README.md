@@ -575,7 +575,7 @@ git push origin feature/amazing-new-feature
 ```
 MIT License
 
-Copyright (c) 2024 Ethereal Canvas
+Copyright (c) 2025 Ethereal Canvas
 
 Permission is hereby granted, free of charge, to any person obtaining a copy
 of this software and associated documentation files (the "Software"), to deal

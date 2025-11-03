@@ -206,7 +206,7 @@ const Gallery: React.FC = () => {
                 <img
                   src={image.imageUrl}
                   alt={image.prompt}
-                  className="w-full h-48 object-cover rounded-lg"
+                  className="w-full h-48 object-contain rounded-lg bg-gray-900/20"
                   onError={(e) => {
                     console.error('Gallery: Failed to load image:', image.imageUrl);
                     const target = e.target as HTMLImageElement;

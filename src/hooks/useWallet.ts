@@ -26,7 +26,10 @@ export const useWallet = () => {
   };
 
   const checkConnection = useCallback(async () => {
-    if (!isMetaMaskInstalled()) return;
+    if (!isMetaMaskInstalled()) {
+      // Silently return if MetaMask is not installed
+      return;
+    }
     
     try {
       const accounts = await window.ethereum.request({ method: 'eth_accounts' });
@@ -56,7 +59,8 @@ export const useWallet = () => {
         setProvider(null);
       }
     } catch (error) {
-      console.error('Error checking wallet connection:', error);
+      // Silently handle errors when checking connection
+      // This prevents console spam when MetaMask is not installed
       setWallet(prev => ({
         ...prev,
         connected: false,
